@@ -1,14 +1,14 @@
 # Algorithm Visualizer (Raylib)
 
-C++-algoritme-visualizer bygget med [Raylib](https://www.raylib.com/). Visualiser **Shortest path** (grid + graf), **MST (Prim/Kruskal)** og **Heap (Min/Max)** med træ-struktur og animation.
+A C++ algorithm visualizer built with [Raylib](https://www.raylib.com/). Visualize **Shortest Path** (grid + graph), **MST (Prim/Kruskal)**, and **Heap (Min/Max)** with tree-style rendering and animations.
 
-## Krav
+## Requirements
 
 - **CMake** 3.16+
-- **C++17**-kompilator
-- **Raylib** – findes den ikke på systemet, hentes den automatisk via FetchContent
+- **C++17** compiler
+- **Raylib** – if not found on the system, it is fetched automatically via FetchContent
 
-## Bygge og køre
+## Build and run
 
 ```bash
 mkdir build && cd build
@@ -17,9 +17,9 @@ cmake --build .
 ./AlgoVisualizer
 ```
 
-### Tests
+## Tests
 
-Projektet inkluderer unit tests (GoogleTest hentes automatisk):
+The project includes unit tests (GoogleTest is fetched automatically):
 
 ```bash
 cmake .. -DBUILD_TESTS=ON
@@ -29,47 +29,76 @@ ctest --output-on-failure
 
 ## Features
 
-### Hovedmenu
+### Main Menu
 
-- **Shortest path** – grid-pathfinding og graf-editor med BFS, DFS, Dijkstra, A*
-- **MST (Prim/Kruskal)** – minimalt spændtræ med vægtede kanter
-- **Heap (Min/Max)** – binær heap med indsættelse, DeleteRoot, Heapify og array-byg
-- **Luk program** – afslut
+- **Shortest Path** – grid pathfinding and a graph editor with BFS, DFS, Dijkstra, A*
+- **MST (Prim/Kruskal)** – minimum spanning tree with weighted edges
+- **Heap (Min/Max)** – binary heap with insert, DeleteRoot, Heapify, and build-from-array
+- **Exit** – quit the program
 
-### Shortest path
+## Shortest Path
 
-- **Grid Pathfinding**: 2D-gitter, start/mål, vægge. Algoritmer: BFS, DFS, Dijkstra, A*. Presets: Empty, Random, Maze. Clear Walls / Clear Path.
-- **Graph Editor**: Placér noder (klik), forbind med **Ctrl+klik** på to noder (træ-regel: hver node har højst én forælder; re-parent ved ny forbindelse). S=Start, T=Mål. Vægte ved Dijkstra/A* (Ctrl+klik på kant). Save/Load (JSON).
+### Grid Pathfinding
 
-### MST (Prim/Kruskal)
+- 2D grid with start/goal and walls
+- Algorithms: BFS, DFS, Dijkstra, A*
+- Presets: Empty, Random, Maze
+- Actions: Clear Walls / Clear Path
 
-- Venstre panel: Add Node, Select/Move, Add Edge, Delete. Klik på tomt område = ny node; Add Edge: klik to noder = kant. Dobbeltklik på kant = rediger vægt.
-- Prim: vælg start-node. Kruskal: kanter sorteret i panel. Run, Step, Back, Play/Pause, Clear.
+### Graph Editor
 
-### Heap (Min/Max)
+- Place nodes (click)
+- Connect nodes using **Ctrl+click** on two nodes  
+  (tree rule: each node has at most one parent; re-parent on new connection)
+- **S** = Start, **T** = Target
+- Weighted edges for Dijkstra/A* (**Ctrl+click** on an edge to edit weight)
+- Save/Load graphs (JSON)
 
-- **Insert**: Klik eller Ctrl+klik på værdiboksen for at sætte tal, derefter Insert. **DeleteRoot**: fjern rod. **Heapify**: byg heap fra nuværende array.
-- **Array**: Skriv tal med komma (fx `5, 2, 9, 1, 7`), klik feltet for at redigere. **Indsæt** = indlæs array som række, derefter **Heapify** for at bygge heap.
-- Min/Max-knapper skifter heap-type. Speed +/-. Esc = tilbage.
+## MST (Prim/Kruskal)
 
-## Projektstruktur
+- Tools: Add Node, Select/Move, Add Edge, Delete
+- Click empty space = new node
+- Add Edge: click two nodes = edge
+- Double-click an edge = edit weight
+- Prim: select a start node
+- Kruskal: edges are shown sorted in a panel
+- Controls: Run, Step, Back, Play/Pause, Clear
 
-| Mappe        | Indhold |
-|-------------|---------|
-| `include/`  | Headers: scener, algoritmer, datastrukturer, heap, MST, pathfinding, render, UI |
-| `src/`      | Implementering: Application, MainMenu, HeapScene, PathfindingScene, MstScene, Raylib-render, algoritmer, heap, MST |
-| `tests/`    | Unit tests (Graph, BFS, Heap) |
+## Heap (Min/Max)
 
-## Teknisk
+- Insert: click (or **Ctrl+click**) the value box to enter a number, then press **Insert**
+- DeleteRoot: remove the root node
+- Heapify: build a heap from the current array
 
-- **Application**: Hovedloop (input → update → draw), scene-styring.
-- **Scener**: Hver scene (Pathfinding, Mst, Heap) har ét ansvar; ESC går tilbage til menu.
-- **Algoritmer**: BFS, DFS, Dijkstra, A* (IAlgorithm); Heap bruger egen engine med steps og replay.
-- **Graf**: Træ-begrænsning i Graph Editor (getParentId, re-parent ved ny kant).
+### Array input
 
-## Licens
+- Enter comma-separated values (e.g. `5, 2, 9, 1, 7`)
+- Press **Insert** to load the array row, then **Heapify** to build the heap
 
-Projektets kode: efter eget valg.  
-Raylib: zlib/libpng.  
-nlohmann/json: MIT.  
-GoogleTest: BSD-3-Clause.
+### Controls
+
+- Min/Max buttons switch heap type
+- Speed controls: Speed + / -
+- **Esc** = back to menu
+
+## Project Structure
+
+| Folder     | Contents |
+|------------|----------|
+| `include/` | Headers: scenes, algorithms, data structures, heap, MST, pathfinding, rendering, UI |
+| `src/`     | Implementation: Application, MainMenu, HeapScene, PathfindingScene, MstScene, Raylib rendering, algorithms, heap, MST |
+| `tests/`   | Unit tests (Graph, BFS, Heap) |
+
+## Technical Notes
+
+- **Application**: main loop (input → update → draw) and scene management.
+- **Scenes**: each scene (Pathfinding, MST, Heap) has a single responsibility; **Esc** returns to the menu.
+- **Algorithms**: BFS, DFS, Dijkstra, A* via an `IAlgorithm` interface. Heap uses its own step/replay engine.
+- **Graph**: tree constraint in the Graph Editor (`getParentId`, re-parent on new edge).
+
+## License
+
+- Project code: your choice.
+- Raylib: zlib/libpng.
+- nlohmann/json: MIT.
+- GoogleTest: BSD-3-Clause.
