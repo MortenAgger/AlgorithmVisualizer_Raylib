@@ -1,7 +1,56 @@
+# ---- Build output ----
 build/
+cmake-build-*/
+out/
+bin/
+lib/
+
+# ---- CMake generated ----
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+install_manifest.txt
+
+# ---- OS junk (macOS) ----
 .DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# ---- Editor/IDE ----
+.vscode/
+.idea/
+*.iml
+
+# Cursor
 .cursor/
 .cursorignore
 .cursorrules
-.vscode/
-.idea/
+
+# ---- Compiled objects / binaries ----
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+
+# ---- Debug / profiling ----
+*.dSYM/
+*.dSYM.zip
+*.dSYM.tar
+*.profraw
+*.profdata
+
+# ---- Logs ----
+*.log
+EOF
