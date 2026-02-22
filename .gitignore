@@ -27,10 +27,6 @@ install_manifest.txt
 .idea/
 *.iml
 
-# Editor / IDE config (local)
-.cursor/
-.cursorignore
-.cursorrules
 
 # ---- Compiled objects / binaries ----
 *.o
