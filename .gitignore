@@ -1,25 +1,7 @@
-# Build
 build/
-CMakeCache.txt
-CMakeFiles/
-cmake_install.cmake
-Makefile
-*.a
-*.o
-*.exe
-AlgoVisualizer
-AlgoVisualizerTests
-
-# IDE / Editor
-.vs/
-.vscode/
-*.user
-*.suo
-*.sln
-*.vcxproj*
-.cursor/
-
-# Generated / local
-graph_save.json
-*.log
 .DS_Store
+.cursor/
+.cursorignore
+.cursorrules
+.vscode/
+.idea/
