@@ -98,7 +98,6 @@ ctest --output-on-failure
 
 ## License
 
-- Project code: your choice.
 - Raylib: zlib/libpng.
 - nlohmann/json: MIT.
 - GoogleTest: BSD-3-Clause.
